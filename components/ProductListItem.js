@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addToCart, addToWishlist} from '../redux/CartSlice';
 import FastImage from 'react-native-fast-image';
 import React, { useCallback } from 'react';
+import { PageName } from '../styles/PageName';
 
 export const ProductListItem = React.memo(({productData, navigation}) => {
     const {item, index} = productData;
@@ -13,7 +14,7 @@ export const ProductListItem = React.memo(({productData, navigation}) => {
     const wishlistData = useSelector(state => state.cart.wishlistData);
     const wishListIndex = wishlistData.findIndex(data => data.id === item.id);
 
-    const onProductPressed = useCallback(() => navigation.navigate('ProductDetail', {data: item}),[]);
+    const onProductPressed = useCallback(() => navigation.navigate(PageName.SINGLEPRODUCT, {data: item}),[]);
 
     const plusButtonPressed = useCallback(() => dispatch(addToCart(item)),[]);
 

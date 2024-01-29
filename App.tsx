@@ -11,6 +11,7 @@ import {Provider} from 'react-redux';
 import {store} from './redux/store';
 import WishlistPage from './pages/WishlistPage';
 import ComingSoon from './pages/ComingSoon';
+import { PageName } from './styles/PageName';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,21 +21,21 @@ const BottomTabScreen = () => {
   return (
     <Tab.Navigator
       tabBar={props => <MyTabBar {...props} />}
-      initialRouteName="Home">
-      <Tab.Screen options={{headerShown: false}} name="Home" component={Home} />
+      initialRouteName={PageName.HOME}>
+      <Tab.Screen options={{headerShown: false}} name={PageName.HOME} component={Home} />
       <Tab.Screen
         options={{headerShown: false}}
-        name="Category"
+        name={PageName.CATEGORY}
         component={ComingSoon}
       />
       <Tab.Screen
         options={{headerShown: false}}
-        name="Favourite"
+        name={PageName.FAVOURITE}
         component={WishlistPage}
       />
       <Tab.Screen
         options={{headerShown: false}}
-        name="More"
+        name={PageName.MORE}
         component={ComingSoon}
       />
     </Tab.Navigator>
@@ -43,26 +44,26 @@ const BottomTabScreen = () => {
 
 const StackNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="BottomTabScreen">
+    <Stack.Navigator initialRouteName={PageName.BOTTOMTAB}>
       <Stack.Screen
-        name="BottomTabScreen"
+        name={PageName.BOTTOMTAB}
         component={BottomTabScreen}
-        options={{headerShown: false, title: 'BottomTabScreen'}}
+        options={{headerShown: false, title: PageName.BOTTOMTAB}}
       />
       <Stack.Screen
-        name="ProductDetail"
+        name={PageName.SINGLEPRODUCT}
         component={ProductDetail}
-        options={{headerShown: false, title: 'ProductDetail'}}
+        options={{headerShown: false, title: PageName.SINGLEPRODUCT}}
       />
       <Stack.Screen
-        name="CheckoutPage"
+        name={PageName.CHECKOUT}
         component={CheckoutPage}
-        options={{headerShown: false, title: 'CheckoutPage'}}
+        options={{headerShown: false, title: PageName.CHECKOUT}}
       />
       <Stack.Screen
-        name="WishlistPage"
+        name={PageName.WISHLIST}
         component={WishlistPage}
-        options={{headerShown: false, title: 'WishlistPage'}}
+        options={{headerShown: false, title: PageName.WISHLIST}}
       />
     </Stack.Navigator>
   );

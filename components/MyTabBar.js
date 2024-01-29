@@ -17,6 +17,7 @@ import {
   more,
 } from '../assets';
 import {FONTS} from '../styles/Fonts';
+import { PageName } from '../styles/PageName';
 
 const renderBottomTabIcons = (iconIndex, isFocused) => {
   switch (iconIndex) {
@@ -43,7 +44,7 @@ const renderBottomTabIcons = (iconIndex, isFocused) => {
                 source={home}
                 style={styles.homeIcons}
               />
-              <Text style={[styles.icontext]}>Home</Text>
+              <Text style={[styles.icontext]}>{PageName.HOME}</Text>
             </>
           )}
         </>
@@ -68,7 +69,7 @@ const renderBottomTabIcons = (iconIndex, isFocused) => {
                 source={category}
                 style={styles.homeIcons}
               />
-              <Text style={[styles.icontext]}>Category</Text>
+              <Text style={[styles.icontext]}>{PageName.CATEGORY}</Text>
             </>
           )}
         </>
@@ -93,7 +94,7 @@ const renderBottomTabIcons = (iconIndex, isFocused) => {
                 source={heart}
                 style={styles.homeIcons}
               />
-              <Text style={[styles.icontext]}>Favourite</Text>
+              <Text style={[styles.icontext]}>{PageName.FAVOURITE}</Text>
             </>
           )}
         </>
@@ -118,7 +119,7 @@ const renderBottomTabIcons = (iconIndex, isFocused) => {
                 source={more}
                 style={[styles.homeIcons, {height: 15, marginTop: 3}]}
               />
-              <Text style={[styles.icontext]}>More</Text>
+              <Text style={[styles.icontext]}>{PageName.MORE}</Text>
             </>
           )}
         </>

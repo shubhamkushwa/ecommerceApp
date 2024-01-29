@@ -5,12 +5,13 @@ import {FONTS} from '../styles/Fonts';
 import {Color} from '../styles/Color';
 import {addToCart, addToWishlist} from '../redux/CartSlice';
 import FastImage from 'react-native-fast-image';
+import { PageName } from '../styles/PageName';
 
 WishlistItem = ({productData, dispatch, navigation}) => {
   const {item,index} = productData;
   const removeButtonPressed = useCallback(() => dispatch(addToWishlist(item)),[]);
   const addToCartButtonPressed = useCallback(() => dispatch(addToCart(item)),[]);
-  const navigateToDetailPage = useCallback(() => navigation.navigate('ProductDetail',{data:item}),[])
+  const navigateToDetailPage = useCallback(() => navigation.navigate(PageName.SINGLEPRODUCT,{data:item}),[])
   return (
     <View key={index}>
       <View style={styles.rowView}>

@@ -12,13 +12,14 @@ import {FONTS} from '../styles/Fonts';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {useCallback} from 'react';
+import { PageName } from '../styles/PageName';
 
 export const CartIcon = ({tintColor}) => {
   const navigation = useNavigation();
   const cartData = useSelector(state => state.cart.cartData);
 
   const navigateToCheckout = useCallback(
-    () => navigation.navigate('CheckoutPage'),
+    () => navigation.navigate(PageName.CHECKOUT),
     [],
   );
 

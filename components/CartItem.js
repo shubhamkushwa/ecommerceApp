@@ -5,12 +5,13 @@ import {FONTS} from '../styles/Fonts';
 import {addToCart, removeFromCart} from '../redux/CartSlice';
 import {Color} from '../styles/Color';
 import FastImage from 'react-native-fast-image';
+import { PageName } from '../styles/PageName';
 
 CartItem = ({productData, dispatch, navigation}) => {
   const {item, index} = productData;
 
   const onProductClicked = useCallback(
-    () => navigation.navigate('ProductDetail', {data: item}),
+    () => navigation.navigate(PageName.SINGLEPRODUCT, {data: item}),
     [],
   );
 

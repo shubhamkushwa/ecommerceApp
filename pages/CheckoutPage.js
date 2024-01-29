@@ -26,14 +26,14 @@ CheckoutPage = () => {
     }, 0);
   }, [cartData]);
 
-  const PriceView = useCallback(({title, price}) => {
+  const PriceView = ({title, price}) => {
     return (
       <View style={styles.subTotalMainView}>
         <Text style={styles.subTotalText}>{title}</Text>
         <Text style={styles.priceText}>${price}</Text>
       </View>
     );
-  }, []);
+  };
 
   const backButtonPressed = useCallback(() => navigation.goBack(), []);
 

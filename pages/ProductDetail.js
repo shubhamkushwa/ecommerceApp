@@ -19,6 +19,7 @@ import Stars from 'react-native-stars';
 import {SliderBox} from 'react-native-image-slider-box';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToCart, addToWishlist} from '../redux/CartSlice';
+import { PageName } from '../styles/PageName';
 
 ProductDetail = props => {
   const {data} = props.route.params;
@@ -47,7 +48,7 @@ ProductDetail = props => {
 
   const buyNowAction = useCallback(() => {
     addToCartButtonPressed();
-    navigation.navigate('CheckoutPage');
+    navigation.navigate(PageName.CHECKOUT);
   }, []);
   return (
     <ScrollView style={styles.scrollView} bounces={false}>
