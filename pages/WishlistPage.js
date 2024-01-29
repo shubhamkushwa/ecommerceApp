@@ -1,19 +1,14 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  FlatList,
-  Platform,
-} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, Text, FlatList, Platform} from 'react-native';
 import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
 import {Color} from '../styles/Color';
 import {FONTS} from '../styles/Fonts';
 import {useDispatch, useSelector} from 'react-redux';
 import {CartIcon} from '../components/CartIcon';
 import WishListItem from '../components/WishListItem';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
-export default WishListPage = () => {
+WishListPage = () => {
   const cartData = useSelector(state => state.cart.wishlistData);
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -28,21 +23,25 @@ export default WishListPage = () => {
           <CartIcon tintColor={'black'} />
         </View>
         <FlatList
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={item => item.id.toString()}
           showsVerticalScrollIndicator={false}
           data={cartData}
           removeClippedSubviews={true}
           bounces={false}
           ListEmptyComponent={() => (
-            <View
-              style={styles.emptyView}>
-              <Text
-                style={styles.emptyText}>
+            <View style={styles.emptyView}>
+              <Text style={styles.emptyText}>
                 Add products to your wishlist!
               </Text>
             </View>
           )}
-          renderItem={(item) => <WishListItem productData={item} dispatch={dispatch} navigation={navigation} />}
+          renderItem={item => (
+            <WishListItem
+              productData={item}
+              dispatch={dispatch}
+              navigation={navigation}
+            />
+          )}
         />
       </View>
     </View>
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: 'white',
-    marginTop: Platform.OS == 'ios' ? 65 : 30,
+    marginTop: Platform.OS === 'ios' ? 65 : 30,
   },
   navigationBar: {
     width: responsiveScreenWidth(90),
@@ -95,14 +94,16 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.ManropeSemiBold,
   },
   backImage: {height: 10, width: 5},
-  emptyView:{
+  emptyView: {
     height: 300,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  emptyText:{
+  emptyText: {
     fontSize: 18,
     fontWeight: '600',
     fontFamily: FONTS.ManropeBold,
   }
 });
+
+export default React.memo(WishListPage);

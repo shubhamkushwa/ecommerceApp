@@ -1,3 +1,4 @@
+import React, {useCallback, useMemo} from 'react';
 import {
   Image,
   TouchableOpacity,
@@ -15,24 +16,26 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../components/CartItem';
 
-export default CheckoutPage = () => {
+CheckoutPage = () => {
   const navigation = useNavigation();
   const cartData = useSelector(state => state.cart.cartData);
   const dispatch = useDispatch();
-  const totalPrice = cartData.reduce((accumulator, currentProduct) => {
-    return accumulator + currentProduct.count * currentProduct.price;
-  }, 0);
+  const totalPrice = useMemo(() => {
+    return cartData.reduce((accumulator, currentProduct) => {
+      return accumulator + currentProduct.count * currentProduct.price;
+    }, 0);
+  }, [cartData]);
 
-  const PriceView = ({title, price}) => {
+  const PriceView = useCallback(({title, price}) => {
     return (
       <View style={styles.subTotalMainView}>
         <Text style={styles.subTotalText}>{title}</Text>
         <Text style={styles.priceText}>${price}</Text>
       </View>
     );
-  };
+  }, []);
 
-  const backButtonPressed = () => navigation.goBack();
+  const backButtonPressed = useCallback(() => navigation.goBack(), []);
 
   return (
     <View style={styles.mainView}>
@@ -53,7 +56,7 @@ export default CheckoutPage = () => {
         </View>
         <FlatList
           removeClippedSubviews={true}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={item => item.id.toString()}
           showsVerticalScrollIndicator={false}
           data={cartData}
           bounces={false}
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: 'white',
-    marginTop: Platform.OS == 'ios' ? 65 : 30,
+    marginTop: Platform.OS === 'ios' ? 65 : 30,
   },
   navigationBar: {
     width: responsiveScreenWidth(90),
@@ -188,3 +191,5 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.ManropeMedium,
   },
 });
+
+export default React.memo(CheckoutPage);

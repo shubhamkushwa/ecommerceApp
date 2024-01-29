@@ -1,9 +1,10 @@
+import React from 'react';
 import {Image, TextInput, View, StyleSheet} from 'react-native';
 import {Color} from '../styles/Color';
 import {searchIcon} from '../assets';
 import {FONTS} from '../styles/Fonts';
 
-export const SearchBar = ({searchText,setSearchText}) => {
+SearchBar = ({searchText,setSearchText}) => {
   return (
     <View>
       <TextInput
@@ -32,3 +33,5 @@ const styles = StyleSheet.create({
   },
   searchIcon: {position: 'absolute', left: 25, top: 20, height: 15, width: 15},
 });
+
+export default React.memo(SearchBar);

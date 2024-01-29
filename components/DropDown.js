@@ -6,7 +6,10 @@ import {Color} from '../styles/Color';
 
 export const DropDown = props => {
   const {title, width, data} = props;
-  const [value, setValue] = useState(null);
+  const [dropDownValue, setDropDownValue] = useState(null);
+
+  const onChange = ({value}) => setDropDownValue(value);
+
   return (
     <View style={{marginTop: 20, width: width}}>
       <Text style={styles.title}>{title}</Text>
@@ -18,8 +21,8 @@ export const DropDown = props => {
         labelField="label"
         valueField="value"
         placeholder={data[0].label}
-        value={value}
-        onChange={item => setValue(item.value)}
+        value={dropDownValue}
+        onChange={onChange}
       />
     </View>
   );

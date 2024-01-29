@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
 import {FONTS} from '../styles/Fonts';
@@ -5,11 +6,11 @@ import {Color} from '../styles/Color';
 import {addToCart, addToWishlist} from '../redux/CartSlice';
 import FastImage from 'react-native-fast-image';
 
-export default WishlistItem = ({productData, dispatch, navigation}) => {
+WishlistItem = ({productData, dispatch, navigation}) => {
   const {item,index} = productData;
-  const removeButtonPressed = () => dispatch(addToWishlist(item));
-  const addToCartButtonPressed = () => dispatch(addToCart(item));
-  const navigateToDetailPage = () => navigation.navigate('ProductDetail',{data:item})
+  const removeButtonPressed = useCallback(() => dispatch(addToWishlist(item)),[]);
+  const addToCartButtonPressed = useCallback(() => dispatch(addToCart(item)),[]);
+  const navigateToDetailPage = useCallback(() => navigation.navigate('ProductDetail',{data:item}),[])
   return (
     <View key={index}>
       <View style={styles.rowView}>
@@ -95,3 +96,5 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
 });
+
+export default React.memo(WishlistItem);

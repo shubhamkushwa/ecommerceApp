@@ -5,21 +5,19 @@ import {like, unlike} from '../assets';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToCart, addToWishlist} from '../redux/CartSlice';
 import FastImage from 'react-native-fast-image';
-import React from 'react';
+import React, { useCallback } from 'react';
 
-export const ProductListItem = React.memo(
-  ({productData, navigation}) => {
+export const ProductListItem = React.memo(({productData, navigation}) => {
     const {item, index} = productData;
     const dispatch = useDispatch();
     const wishlistData = useSelector(state => state.cart.wishlistData);
     const wishListIndex = wishlistData.findIndex(data => data.id === item.id);
 
-    const onProductPressed = () =>
-      navigation.navigate('ProductDetail', {data: item});
+    const onProductPressed = useCallback(() => navigation.navigate('ProductDetail', {data: item}),[]);
 
-    const plusButtonPressed = () => dispatch(addToCart(item));
+    const plusButtonPressed = useCallback(() => dispatch(addToCart(item)),[]);
 
-    const likeButtonPressed = () => dispatch(addToWishlist(item));
+    const likeButtonPressed = useCallback(() => dispatch(addToWishlist(item)),[]);
 
     return (
       <TouchableOpacity
@@ -42,7 +40,7 @@ export const ProductListItem = React.memo(
         <TouchableOpacity onPress={likeButtonPressed} style={styles.likeButton}>
           <Image
             resizeMode={'contain'}
-            source={wishListIndex == -1 ? unlike : like}
+            source={wishListIndex === -1 ? unlike : like}
             style={styles.likeImage}
           />
         </TouchableOpacity>

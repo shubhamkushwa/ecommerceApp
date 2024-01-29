@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, {useEffect, useState} from 'react';
+import React, { useMemo, useState} from 'react';
 import {
   View,
   Text,
@@ -17,10 +17,13 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import {SearchBar} from '../components/SearchBar';
+import SearchBar from '../components/SearchBar';
 import {Color} from '../styles/Color';
 import {FONTS} from '../styles/Fonts';
-import {responsiveHeight, responsiveScreenHeight, responsiveScreenWidth} from 'react-native-responsive-dimensions';
+import {
+  responsiveScreenHeight,
+  responsiveScreenWidth,
+} from 'react-native-responsive-dimensions';
 import {sale} from '../assets';
 import {CartIcon} from '../components/CartIcon';
 import useApi from '../CustomHook/useApi';
@@ -30,26 +33,25 @@ import {useNavigation} from '@react-navigation/native';
 import {DeliveryData, DummyData, TimeData} from '../styles/Constants';
 
 function Home() {
-  const [productData, setProductData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const navigation = useNavigation();
   const {data} = useApi('https://dummyjson.com/products');
 
-  useEffect(() => {
+  const productData = useMemo(() => {
     if (data && data.products) {
       let addedCountData = data.products.map(item => {
         return {...item, count: 1};
       });
-      setProductData(addedCountData);
+      return addedCountData;
     }
+    return [];
   }, [data]);
 
-  const getProductData = () => {
-    let filteredData = productData.filter(item =>
+  const getProductData = useMemo(() => {
+    return productData.filter(item =>
       item.title.toLowerCase().includes(searchText.toLowerCase()),
     );
-    return filteredData.length > 0 ? filteredData : productData;
-  };
+  }, [searchText, productData]);
 
   return (
     <ScrollView
@@ -77,7 +79,7 @@ function Home() {
           data={DummyData}
           renderItem={() => (
             <TouchableOpacity style={styles.offerButtonView}>
-              <Image source={sale} style={{height: 68, width: 68}} />
+              <Image source={sale} style={styles.saleApp} />
               <View>
                 <Text style={styles.offerMainTitle}>Get</Text>
                 <Text style={styles.offerOffTitle}>50% OFF</Text>
@@ -89,15 +91,14 @@ function Home() {
         <Text style={styles.recommendedTitle}>Recommended</Text>
         <FlatList
           removeClippedSubviews={true}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={item => item.id.toString()}
           scrollEnabled={false}
           style={styles.productFlatlistView}
           numColumns={2}
           showsHorizontalScrollIndicator={false}
-          data={getProductData()}
+          data={getProductData}
           ListEmptyComponent={() => (
-            <View
-              style={{height:responsiveScreenHeight(100)}}>
+            <View style={{height: responsiveScreenHeight(100)}}>
               <ActivityIndicator />
             </View>
           )}
@@ -117,14 +118,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: Color.White,
   },
-  conatiner: {flex: 1, backgroundColor: Color.Black},
+  conatiner: {flex: 1, backgroundColor: Color.White},
   headerView: {
     alignItems: 'center',
     backgroundColor: Color.Blue,
     paddingBottom: 20,
   },
   topView: {
-    marginTop: Platform.OS == 'ios' ? 60 : 30,
+    marginTop: Platform.OS === 'ios' ? 60 : 30,
     marginBottom: 35,
   },
   rowCenter: {
@@ -177,7 +178,12 @@ const styles = StyleSheet.create({
   widthNinety: {
     width: responsiveScreenWidth(90),
   },
-  productFlatlistView: {width: responsiveScreenWidth(95), marginTop: 20,flex:1},
+  productFlatlistView: {
+    width: responsiveScreenWidth(95),
+    marginTop: 20,
+    flex: 1,
+  },
+  saleApp:{height: 68, width: 68}
 });
 
-export default Home;
+export default React.memo(Home);

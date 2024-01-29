@@ -1,3 +1,4 @@
+import React, {useCallback, useMemo} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -9,10 +10,7 @@ import {
   Platform
 } from 'react-native';
 import {Color} from '../styles/Color';
-import {
-  responsiveScreenWidth,
-  responsiveWidth,
-} from 'react-native-responsive-dimensions';
+import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
 import {CartIcon} from '../components/CartIcon';
 import {useNavigation} from '@react-navigation/native';
 import {FONTS} from '../styles/Fonts';
@@ -22,29 +20,38 @@ import {SliderBox} from 'react-native-image-slider-box';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToCart, addToWishlist} from '../redux/CartSlice';
 
-export default ProductDetail = props => {
+ProductDetail = props => {
   const {data} = props.route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const wishlistData = useSelector(state => state.cart.wishlistData);
   const wishListIndex = wishlistData.findIndex(item => data.id === item.id);
 
-  function calculateDiscountedPrice(originalPrice, discountPercentage) {
-    discountPercentage = Math.max(0, Math.min(100, discountPercentage));
-    const discountAmount = (originalPrice * discountPercentage) / 100;
-    return `${discountAmount.toFixed(1)}`;
-  }
+  const calculateDiscountedPrice = (originalPrice, discountPercentage) => {
+    const price = useMemo(() => {
+      discountPercentage = Math.max(0, Math.min(100, discountPercentage));
+      const discountAmount = (originalPrice * discountPercentage) / 100;
+      return `${discountAmount.toFixed(1)}`;
+    }, []);
+    return price;
+  };
 
-  const backButtonPressed = () => navigation.goBack();
+  const backButtonPressed = useCallback(() => navigation.goBack(), []);
 
-  const addRemoveFromWishlist = () => dispatch(addToWishlist(data));
+  const addRemoveFromWishlist = useCallback(
+    () => dispatch(addToWishlist(data)),
+    [],
+  );
 
-  const addToCartButtonPressed = () => dispatch(addToCart(data));
+  const addToCartButtonPressed = useCallback(
+    () => dispatch(addToCart(data)),
+    [],
+  );
 
-  const buyNowAction = () => {
+  const buyNowAction = useCallback(() => {
     addToCartButtonPressed();
     navigation.navigate('CheckoutPage');
-  };
+  }, []);
   return (
     <ScrollView style={styles.scrollView} bounces={false}>
       <SafeAreaView style={styles.mainView}>
@@ -81,7 +88,7 @@ export default ProductDetail = props => {
               resizeMethod={'resize'}
               resizeMode={'contain'}
               images={data.images}
-              parentWidth={responsiveWidth(100)}
+              parentWidth={responsiveScreenWidth(100)}
               sliderBoxHeight={207}
               dotColor={Color.DarkYellow}
               inactiveDotColor="#E4E4E4"
@@ -95,7 +102,7 @@ export default ProductDetail = props => {
                 onPress={addRemoveFromWishlist}
                 style={styles.likeButtonView}>
                 <Image
-                  source={wishListIndex == -1 ? unlike : like}
+                  source={wishListIndex === -1 ? unlike : like}
                   style={styles.likeImage}
                   resizeMode={'contain'}
                 />
@@ -138,11 +145,6 @@ export default ProductDetail = props => {
   );
 };
 
-ProductDetail.sharedElements = navigation => {
-  const {data} = navigation.route.params;
-  return [`tag${data.id}`];
-};
-
 const styles = StyleSheet.create({
   container: {flex: 1},
   scrollView: {backgroundColor: 'white'},
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: Platform.OS == 'ios' ? 0 : 20
+    marginTop: Platform.OS === 'ios' ? 0 : 20,
   },
   backButtonView: {
     backgroundColor: Color.LightGray,
@@ -168,16 +170,16 @@ const styles = StyleSheet.create({
   mainTitle: {
     fontSize: 40,
     fontFamily: FONTS.ManropeExtaLight,
-    width: responsiveWidth(90),
+    width: responsiveScreenWidth(90),
   },
   brandName: {
     fontSize: 40,
     fontFamily: FONTS.ManropeBold,
-    width: responsiveWidth(90),
+    width: responsiveScreenWidth(90),
   },
   starMainView: {
     alignItems: 'center',
-    width: responsiveWidth(90),
+    width: responsiveScreenWidth(90),
     marginVertical: 10,
     flexDirection: 'row',
   },
@@ -229,7 +231,7 @@ const styles = StyleSheet.create({
   priceMainView: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: responsiveWidth(90),
+    width: responsiveScreenWidth(90),
     marginTop: 20,
   },
   priceText: {
@@ -255,7 +257,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: responsiveWidth(90),
+    width: responsiveScreenWidth(90),
     marginTop: 20,
   },
   addCartMainView: {
@@ -301,3 +303,5 @@ const styles = StyleSheet.create({
     color: '#8891A5',
   },
 });
+
+export default React.memo(ProductDetail);

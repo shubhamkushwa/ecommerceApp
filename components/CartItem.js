@@ -1,31 +1,40 @@
-import { Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import React, {useCallback} from 'react';
+import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
 import {FONTS} from '../styles/Fonts';
 import {addToCart, removeFromCart} from '../redux/CartSlice';
 import {Color} from '../styles/Color';
 import FastImage from 'react-native-fast-image';
 
-export default CartItem = ({productData, dispatch, navigation}) => {
-  const {item,index} = productData;
+CartItem = ({productData, dispatch, navigation}) => {
+  const {item, index} = productData;
 
-  const onProductClicked = () => navigation.navigate('ProductDetail', {data: item});
+  const onProductClicked = useCallback(
+    () => navigation.navigate('ProductDetail', {data: item}),
+    [],
+  );
 
-  const removeItemPressed = () => dispatch(removeFromCart(item));
+  const removeItemPressed = useCallback(
+    () => dispatch(removeFromCart(item)),
+    [],
+  );
 
-  const addItemPressed = () => dispatch(addToCart(item));
+  const addItemPressed = useCallback(() => dispatch(addToCart(item)), []);
 
   return (
     <View key={index}>
       <View style={styles.containerView}>
-        <TouchableOpacity onPress={onProductClicked} style={[styles.rowView,{flex:1,marginRight:5}]}>
+        <TouchableOpacity
+          onPress={onProductClicked}
+          style={[styles.rowView, {flex: 1, marginRight: 5}]}>
           <FastImage
             style={styles.thumbnailView}
             source={{
               uri: item.thumbnail,
-              priority:FastImage.priority.normal
+              priority: FastImage.priority.normal,
             }}
           />
-          <View style={{marginLeft: 20,flex:1}}>
+          <View style={{marginLeft: 20, flex: 1}}>
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.price}>${item.price}</Text>
           </View>
@@ -43,7 +52,7 @@ export default CartItem = ({productData, dispatch, navigation}) => {
         </View>
       </View>
       <View style={styles.dividerView} />
-      </View>
+    </View>
   );
 };
 
@@ -88,3 +97,5 @@ const styles = StyleSheet.create({
   },
   dividerView: {height: 1, flex: 1, backgroundColor: Color.LightGray},
 });
+
+export default React.memo(CartItem);

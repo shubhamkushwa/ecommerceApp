@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Image,
   Platform,
@@ -17,7 +18,7 @@ import {
 } from '../assets';
 import {FONTS} from '../styles/Fonts';
 
-const renderBottomTabIcons = (iconIndex, isFocused, navigation, route) => {
+const renderBottomTabIcons = (iconIndex, isFocused) => {
   switch (iconIndex) {
     case 0:
       return (
@@ -127,7 +128,7 @@ const renderBottomTabIcons = (iconIndex, isFocused, navigation, route) => {
   }
 };
 
-export default MyTabBar = ({state, descriptors, navigation}) => {
+MyTabBar = ({state, descriptors, navigation}) => {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
   if (focusedOptions.tabBarVisible === false) {
@@ -185,7 +186,7 @@ export default MyTabBar = ({state, descriptors, navigation}) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: Platform.OS == 'ios' ? 90 : 60,
+    height: Platform.OS === 'ios' ? 90 : 60,
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'white',
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     height: 60,
-    paddingTop: Platform.OS == 'ios' ? 5 : 0,
+    paddingTop: Platform.OS === 'ios' ? 5 : 0,
     flex: 1,
   },
   homeIcons: {
@@ -232,3 +233,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default React.memo(MyTabBar);
