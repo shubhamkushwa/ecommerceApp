@@ -14,6 +14,13 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-ecommerceApp-ecommerceAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ecommerceApp-ecommerceAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8B65DF002B63914B00215CFA /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B65DEF92B63914A00215CFA /* Manrope-Regular.ttf */; };
+		8B65DF012B63914B00215CFA /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B65DEFA2B63914A00215CFA /* Manrope-ExtraBold.ttf */; };
+		8B65DF022B63914B00215CFA /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B65DEFB2B63914A00215CFA /* Manrope-SemiBold.ttf */; };
+		8B65DF032B63914B00215CFA /* Manrope-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B65DEFC2B63914B00215CFA /* Manrope-Light.ttf */; };
+		8B65DF042B63914B00215CFA /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B65DEFD2B63914B00215CFA /* Manrope-Medium.ttf */; };
+		8B65DF052B63914B00215CFA /* Manrope-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B65DEFE2B63914B00215CFA /* Manrope-ExtraLight.ttf */; };
+		8B65DF062B63914B00215CFA /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B65DEFF2B63914B00215CFA /* Manrope-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +50,13 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-ecommerceApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ecommerceApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ecommerceApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ecommerceApp-ecommerceAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ecommerceApp-ecommerceAppTests.release.xcconfig"; path = "Target Support Files/Pods-ecommerceApp-ecommerceAppTests/Pods-ecommerceApp-ecommerceAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B65DEF92B63914A00215CFA /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
+		8B65DEFA2B63914A00215CFA /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
+		8B65DEFB2B63914A00215CFA /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
+		8B65DEFC2B63914B00215CFA /* Manrope-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Light.ttf"; sourceTree = "<group>"; };
+		8B65DEFD2B63914B00215CFA /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		8B65DEFE2B63914B00215CFA /* Manrope-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraLight.ttf"; sourceTree = "<group>"; };
+		8B65DEFF2B63914B00215CFA /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -87,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				8B65DEF82B63913200215CFA /* Resources */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -135,6 +150,20 @@
 				00E356EE1AD99517003FC87E /* ecommerceAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8B65DEF82B63913200215CFA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8B65DEFF2B63914B00215CFA /* Manrope-Bold.ttf */,
+				8B65DEFA2B63914A00215CFA /* Manrope-ExtraBold.ttf */,
+				8B65DEFE2B63914B00215CFA /* Manrope-ExtraLight.ttf */,
+				8B65DEFC2B63914B00215CFA /* Manrope-Light.ttf */,
+				8B65DEFD2B63914B00215CFA /* Manrope-Medium.ttf */,
+				8B65DEF92B63914A00215CFA /* Manrope-Regular.ttf */,
+				8B65DEFB2B63914A00215CFA /* Manrope-SemiBold.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -241,8 +270,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B65DF022B63914B00215CFA /* Manrope-SemiBold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				8B65DF012B63914B00215CFA /* Manrope-ExtraBold.ttf in Resources */,
+				8B65DF042B63914B00215CFA /* Manrope-Medium.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				8B65DF052B63914B00215CFA /* Manrope-ExtraLight.ttf in Resources */,
+				8B65DF032B63914B00215CFA /* Manrope-Light.ttf in Resources */,
+				8B65DF062B63914B00215CFA /* Manrope-Bold.ttf in Resources */,
+				8B65DF002B63914B00215CFA /* Manrope-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +503,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = ecommerceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -493,6 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = ecommerceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -544,7 +582,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -572,6 +610,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -579,7 +618,10 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = "$(inherited)  ";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -616,7 +658,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -636,6 +678,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -643,7 +686,10 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = "$(inherited)  ";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
