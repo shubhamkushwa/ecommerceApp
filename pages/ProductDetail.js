@@ -27,14 +27,11 @@ ProductDetail = props => {
   const wishlistData = useSelector(state => state.cart.wishlistData);
   const wishListIndex = wishlistData.findIndex(item => data.id === item.id);
 
-  const calculateDiscountedPrice = (originalPrice, discountPercentage) => {
-    const price = useMemo(() => {
-      discountPercentage = Math.max(0, Math.min(100, discountPercentage));
-      const discountAmount = (originalPrice * discountPercentage) / 100;
-      return `${discountAmount.toFixed(1)}`;
-    }, []);
-    return price;
-  };
+  const discountedPrice = useMemo(() => {
+    let discount = Math.max(0, Math.min(100, data.discountPercentage));
+    const discountAmount = (data.price * discount) / 100;
+    return `${discountAmount.toFixed(1)}`;
+  }, [data]);
 
   const backButtonPressed = useCallback(() => navigation.goBack(), []);
 
@@ -112,10 +109,7 @@ ProductDetail = props => {
           <View style={styles.priceMainView}>
             <Text style={styles.priceText}>$ {data.price}</Text>
             <View style={styles.discountMainView}>
-              <Text style={styles.discountText}>
-                ${calculateDiscountedPrice(data.price, data.discountPercentage)}{' '}
-                OFF
-              </Text>
+              <Text style={styles.discountText}>${discountedPrice} OFF</Text>
             </View>
           </View>
 

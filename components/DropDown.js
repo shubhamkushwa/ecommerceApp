@@ -4,8 +4,7 @@ import {View, StyleSheet, Text} from 'react-native';
 import {FONTS} from '../styles/Fonts';
 import {Color} from '../styles/Color';
 
-export const DropDown = props => {
-  const {title, width, data} = props;
+export const DropDown = ({title, width, data}) => {
   const [dropDownValue, setDropDownValue] = useState(null);
 
   const onChange = ({value}) => setDropDownValue(value);

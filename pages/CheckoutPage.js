@@ -22,7 +22,7 @@ CheckoutPage = () => {
   const dispatch = useDispatch();
   const totalPrice = useMemo(() => {
     return cartData.reduce((accumulator, currentProduct) => {
-      return accumulator + currentProduct.count * currentProduct.price;
+      return accumulator + (currentProduct.count * currentProduct.price);
     }, 0);
   }, [cartData]);
 
